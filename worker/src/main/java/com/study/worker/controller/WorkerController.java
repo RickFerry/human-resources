@@ -3,6 +3,7 @@ package com.study.worker.controller;
 import com.study.worker.model.Worker;
 import com.study.worker.service.WorkerService;
 import lombok.AllArgsConstructor;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RefreshScope
 @RestController
 @AllArgsConstructor
 @RequestMapping("/workers")
