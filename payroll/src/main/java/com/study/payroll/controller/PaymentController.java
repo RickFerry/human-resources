@@ -23,7 +23,7 @@ public class PaymentController {
         return paymentService.getPayment(workerId, days);
     }
 
-    public Payment getPaymentFallback(Integer days) {
+    public Payment getPaymentFallback(Long workerId, Integer days) {
         return new Payment("Brann", BigDecimal.valueOf(400.0), days);
     }
 }
