@@ -8,11 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
+        <module name="gateway-zuul" />
         <module name="payroll" />
         <module name="worker" />
         <module name="eureka-server" />
-        <module name="gateway-zuul" />
         <module name="user" />
+        <module name="oauth" />
       </profile>
     </annotationProcessing>
   </component>
@@ -21,6 +22,7 @@
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway-zuul" options="-parameters" />
+      <module name="oauth" options="-parameters" />
       <module name="payroll" options="-parameters" />
       <module name="user" options="-parameters" />
       <module name="worker" options="-parameters" />
