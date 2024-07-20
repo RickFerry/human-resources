@@ -26,6 +26,6 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         ResponseEntity<User> response = userFeignClient.findByEmail(userName);
         return Optional.ofNullable(response.getBody())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
