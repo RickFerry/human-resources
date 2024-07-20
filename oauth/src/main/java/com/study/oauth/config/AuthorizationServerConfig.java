@@ -1,6 +1,7 @@
 package com.study.oauth.config;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,14 +13,32 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+@RefreshScope
 @Configuration
-@AllArgsConstructor
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    private AuthenticationManager authenticationManager;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
-    private TokenStore tokenStore;
+
+    private final AuthenticationManager authenticationManager;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final JwtAccessTokenConverter jwtAccessTokenConverter;
+    private final TokenStore tokenStore;
+
+    @Value("${oauth.client.name}")
+    private String clientName;
+
+    @Value("${oauth.client.secret}")
+    private String clientSecret;
+
+    public AuthorizationServerConfig(
+            AuthenticationManager authenticationManager,
+            BCryptPasswordEncoder bCryptPasswordEncoder,
+            JwtAccessTokenConverter jwtAccessTokenConverter,
+            TokenStore tokenStore) {
+        this.authenticationManager = authenticationManager;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.jwtAccessTokenConverter = jwtAccessTokenConverter;
+        this.tokenStore = tokenStore;
+    }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -37,8 +56,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("client")
-                .secret(bCryptPasswordEncoder.encode("secret"))
+                .withClient(clientName)
+                .secret(bCryptPasswordEncoder.encode(clientSecret))
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(3600);
     }
