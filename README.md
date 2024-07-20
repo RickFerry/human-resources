@@ -234,3 +234,4 @@ fetch("http://localhost:8765/hr-worker/workers", {
   "credentials": "omit"
 });
 ```
+![Screenshot 2024-07-20 120354](https://github.com/user-attachments/assets/603377b9-75d8-41df-89c5-1f9a7855a35d)
