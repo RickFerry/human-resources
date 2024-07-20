@@ -1,3 +1,4 @@
+![Screenshot 2024-07-20 120354](https://github.com/user-attachments/assets/603377b9-75d8-41df-89c5-1f9a7855a35d)
 # Microsserviços Java com Spring Boot e Spring Cloud
 ## Atenção: curso específico para versões Java 11 e Spring Boot 2.3.4
 #### Ricardo Ferreira Martins
@@ -234,4 +235,3 @@ fetch("http://localhost:8765/hr-worker/workers", {
   "credentials": "omit"
 });
 ```
-![Screenshot 2024-07-20 120354](https://github.com/user-attachments/assets/603377b9-75d8-41df-89c5-1f9a7855a35d)
